@@ -1,0 +1,54 @@
+<!-- result.html -->
+<!-- This file is used to display the result of calculations -->
+<!doctype html>
+<html>
+
+    <head>
+        <title>MathApp - {{.operation}}</title>
+    </head>
+
+    <body style="background-image: url('../images/background.jpg');">
+		<div style="float:left;background-color:rgba(255, 255, 255, 0.7);padding:10px 10px 10px 10px;">
+			<form action="/calculate" method="post">
+			  Map Size:<br>
+			  <input type="number" id="map_size" name="map_size" value=5>
+			  <br>
+			  Robot's X coordinate:<br>
+			  <input type="number" id="x_pos" name="x_pos" value=1>
+			  <br>
+			  Robot's Y coordinate:<br>
+			  <input type="number" id="y_pos" name="y_pos" value=2>
+			  <br><br>
+			  <input type="submit" value="Submit">
+			</form>
+		</div>
+		
+		<div style="float:right;background: rgba(255, 255, 255, 0.7);padding:10px 10px 10px 10px;width:600px">
+			{{if .display }}
+			Current Robot X coordinate: {{.robotx}}
+			<br/>
+			Current Robot Y coordinate: {{.roboty}}
+			<br/>
+			Map generated x0[y0,y1,y2..],x1[y0,y1,y2]... :
+			<br/>
+			{{.mapg}}
+			<br/>
+			<br/>
+			Navigator X102 current direction: {{.cdirection}}
+			<br/>
+			Navigator X102 current direction: {{.ccoordinate}}
+			<br/>
+			<br/>
+			Instructions: 
+			<br/>
+			{{range $res := .instructions}} 
+				<p>{{$res}}</p> 
+			{{end}}
+			{{else}}
+			Error: {{.error}}
+			{{end}}
+		</div>
+		
+    </body>
+
+</html>
